@@ -1,26 +1,26 @@
 import { Component } from '@angular/core';
-import { Jogo } from './models/jogo.model';
-import { JogoService } from './services/jogo.service';
-import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Jogo } from '../models/jogo.model';
+import { JogoService } from '../services/jogo.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-throw',
+  templateUrl: './throw.component.html',
+  styleUrls: ['./throw.component.css'],
   standalone: true,
-  imports: [RouterModule],  // Certifique-se de importar RouterModule
+  imports: [FormsModule],  // Importando FormsModule aqui também
 })
-export class AppComponent {
+export class ThrowComponent {
   jogo: Jogo = {
-    DataJogo: '', 
+    DataJogo: '',
     QuantidadePontos: 0,
   };
   mensagem: string = '';
-  title: string = 'lançamento de pontos de basquete';
+
   constructor(private jogoService: JogoService) {}
 
   onSubmit() {
-    this.jogo.DataJogo = new Date().toISOString();
+    // this.jogo.DataJogo = new Date().toISOString();
     this.jogoService.throwPoints(this.jogo).subscribe({
       next: () => {
         this.mensagem = 'Jogo enviado com sucesso!';
